@@ -1,0 +1,5 @@
+gie_key.txt
+.ipynb_checkpoints/
+.virtual_documents/
+anaconda_projects/
+.DS_Store
