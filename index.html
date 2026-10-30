@@ -1,458 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quantock Capital</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:     #0B0D11;
-  --bg2:    #10131A;
-  --bg3:    #151A24;
-  --line:   #1D2535;
-  --fg:     #CEC8BE;
-  --fg2:    #6B7482;
-  --fg3:    #3A4155;
-  --amber:  #D97706;
-  --green:  #22C55E;
-  --red:    #EF4444;
-  --blue:   #3B82F6;
-  color-scheme: dark;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.6}
-
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:13px max(20px,env(safe-area-inset-left,0px));
-  border-bottom:1px solid var(--line);
-  position:sticky;top:0;background:var(--bg);z-index:100;
-}
-.wordmark{
-  font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--fg);
-}
-.wordmark em{color:var(--amber);font-style:normal}
-.topbar-right{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg2)}
-
-.strip{
-  background:var(--bg2);border-bottom:1px solid var(--line);
-  padding:7px max(20px,env(safe-area-inset-left,0px));
-  display:flex;gap:28px;overflow-x:auto;scrollbar-width:none;
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-}
-.strip::-webkit-scrollbar{display:none}
-.strip-item{display:flex;gap:8px;align-items:center;white-space:nowrap}
-.strip-label{color:var(--fg3);text-transform:uppercase;letter-spacing:.08em}
-.strip-val{color:var(--fg)}
-.strip-pos{color:var(--green)}
-
-.wrap{
-  max-width:860px;margin:0 auto;
-  padding:28px max(20px,env(safe-area-inset-left,0px)) 64px;
+  --ink:   #0F172A;
+  --body:  #334155;
+  --sub:   #64748B;
+  --dim:   #94A3B8;
+  --rule:  #E2E8F0;
+  --navy:  #1B3D6F;
+  --amber: #B45309;
+  --red:   #B91C1C;
+  --blue:  #1D4ED8;
 }
 
-.kicker{
-  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #fff;
+  color: var(--ink);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-.trade-title{
-  font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;
-  letter-spacing:.04em;line-height:1.1;margin-bottom:5px;
-}
-.trade-sub{
-  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg2);
-  margin-bottom:18px;
+.pg {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.specs{
-  display:grid;grid-template-columns:repeat(6,1fr);
-  border:1px solid var(--line);border-radius:3px;overflow:hidden;
-  margin-bottom:20px;
-}
-.spec{padding:11px 14px;border-right:1px solid var(--line)}
-.spec:last-child{border-right:none}
-.spec-l{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--fg3);margin-bottom:3px}
-.spec-v{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;color:var(--fg)}
-.spec-v.pos{color:var(--green)}
-.spec-v.amb{color:var(--amber)}
-
-.chart-box{
-  background:var(--bg2);border:1px solid var(--line);border-radius:3px;
-  padding:14px 14px 10px;margin-bottom:28px;
-}
-.chart-top{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:10px;
-}
-.chart-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg2)}
-.chart-legend{display:flex;gap:14px;font-family:'JetBrains Mono',monospace;font-size:10px}
-.leg{display:flex;align-items:center;gap:5px;color:var(--fg2)}
-.leg-line{width:18px;height:1.5px;border-top:1.5px dashed}
-canvas#c{width:100%;height:210px;display:block}
-
-.thesis p{
-  color:var(--fg);font-size:14px;font-weight:300;line-height:1.8;
-  margin-bottom:14px;
-}
-.thesis p:last-child{margin-bottom:0}
-
-hr.div{border:none;border-top:1px solid var(--line);margin:32px 0}
-
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.about-name{
-  font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;
-  letter-spacing:.03em;margin-bottom:8px;
-}
-.about-row{font-size:12px;color:var(--fg2);margin-bottom:3px}
-.about-body{font-size:13px;font-weight:300;line-height:1.75;color:var(--fg)}
-
-footer{
-  border-top:1px solid var(--line);
-  padding:14px max(20px,env(safe-area-inset-left,0px));
-  display:flex;justify-content:space-between;
-  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg3);
+/* Header */
+header {
+  padding: 18px 0 16px;
+  border-bottom: 1px solid var(--rule);
 }
 
-@media(max-width:640px){
-  .specs{grid-template-columns:repeat(3,1fr)}
-  .specs .spec:nth-child(3){border-right:none}
-  .about-grid{grid-template-columns:1fr}
-  .chart-legend{display:none}
+.hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
-@media(max-width:400px){
-  .specs{grid-template-columns:repeat(2,1fr)}
-  .specs .spec:nth-child(2){border-right:none}
-  .trade-title{font-size:21px}
+
+.wordmark {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.wordmark span { color: var(--navy); letter-spacing: 0; }
+
+.hd-right {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--sub);
+}
+
+/* Trade block */
+.trade-block {
+  padding: 20px 0 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.trade-name {
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.trade-id {
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  color: var(--sub);
+  margin-bottom: 18px;
+}
+
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.metric {
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: 1px solid var(--rule);
+  margin-bottom: 2px;
+}
+.metric:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+.m-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  color: var(--dim);
+  margin-bottom: 2px;
+}
+
+.m-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+.m-val.pos { color: var(--amber); }
+
+/* Chart */
+.chart-sec {
+  padding: 18px 0 20px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chart-cap {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--sub);
+}
+
+.chart-legend {
+  display: flex;
+  gap: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--sub);
+}
+
+.lg { display: flex; align-items: center; gap: 5px; }
+.lg-line { width: 16px; height: 0; border-top: 1.5px dashed; }
+
+canvas#c { width: 100%; height: 240px; display: block; }
+
+/* Thesis */
+.thesis-sec {
+  padding: 24px 0 26px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.thesis-sec p {
+  font-size: 15.5px;
+  line-height: 1.92;
+  color: var(--body);
+  margin-bottom: 20px;
+  max-width: 70ch;
+}
+.thesis-sec p:last-child { margin-bottom: 0; }
+
+/* About */
+.about-sec {
+  padding: 22px 0 24px;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 36px;
+}
+
+.about-name {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.about-detail {
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  color: var(--sub);
+  line-height: 1.9;
+}
+
+.about-right {
+  font-size: 14.5px;
+  line-height: 1.88;
+  color: var(--body);
+}
+
+/* Footer */
+footer {
+  padding: 14px 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Mobile */
+@media (max-width: 580px) {
+  .about-sec { grid-template-columns: 1fr; gap: 18px; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 0; }
+  .metric { border-right: none; padding-right: 0; margin-right: 0; }
+  .trade-name { font-size: 19px; }
+  .chart-legend { display: none; }
+  .hd-right { display: none; }
 }
 </style>
+</head>
+<body>
+<div class="pg">
 
-<header class="topbar">
-  <div class="wordmark">QUANTOCK<em>.</em></div>
-  <div class="topbar-right">OCT 2026 &nbsp;|&nbsp; EUROPEAN ENERGY</div>
+<header>
+  <div class="hd">
+    <div class="wordmark">QUANTOCK<span>.</span></div>
+    <div class="hd-right">Oct 2026, European Energy</div>
+  </div>
 </header>
 
-<div class="strip" role="region" aria-label="Position summary">
-  <div class="strip-item">
-    <span class="strip-label">TTF front-month</span>
-    <span class="strip-val">99.60</span>
-    <span class="strip-pos">+3.6% on day</span>
-  </div>
-  <div class="strip-item">
-    <span class="strip-label">Open entry</span>
-    <span class="strip-val">93.25</span>
-  </div>
-  <div class="strip-item">
-    <span class="strip-label">Position P&amp;L</span>
-    <span class="strip-pos">+6.81% &nbsp; +0.48R</span>
-  </div>
-  <div class="strip-item">
-    <span class="strip-label">EU storage</span>
-    <span class="strip-val">92.1% (GIE AGSI)</span>
-  </div>
-  <div class="strip-item">
-    <span class="strip-label">Notional</span>
-    <span class="strip-val">EUR 100,000</span>
+<div class="trade-block">
+  <div class="trade-name">TTF Natural Gas, Front-Month</div>
+  <div class="trade-id">001 &nbsp;&nbsp; Long &nbsp;&nbsp; Opened 23 Oct 2026 &nbsp;&nbsp; ICE Futures &nbsp;&nbsp; TRNLTTFD1</div>
+  <div class="metrics">
+    <div class="metric">
+      <div class="m-lbl">Entry</div>
+      <div class="m-val">93.25</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">Current</div>
+      <div class="m-val pos">99.60</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">Stop</div>
+      <div class="m-val">80.00</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">Target</div>
+      <div class="m-val">127.00</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">P&amp;L</div>
+      <div class="m-val pos">+6.81%</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">EU Storage (GIE AGSI)</div>
+      <div class="m-val">92.1%</div>
+    </div>
   </div>
 </div>
 
-<main class="wrap">
-
-  <div class="kicker">Open Position</div>
-  <div class="trade-title">TTF NATURAL GAS FRONT-MONTH</div>
-  <div class="trade-sub">001 &nbsp;|&nbsp; LONG &nbsp;|&nbsp; OPENED 23 OCT 2026 &nbsp;|&nbsp; ICE FUTURES &nbsp;|&nbsp; TRNLTTFD1</div>
-
-  <div class="specs">
-    <div class="spec">
-      <div class="spec-l">Entry</div>
-      <div class="spec-v">93.25</div>
-    </div>
-    <div class="spec">
-      <div class="spec-l">Current</div>
-      <div class="spec-v amb">99.60</div>
-    </div>
-    <div class="spec">
-      <div class="spec-l">Target</div>
-      <div class="spec-v">127.00</div>
-    </div>
-    <div class="spec">
-      <div class="spec-l">Stop</div>
-      <div class="spec-v">80.00</div>
-    </div>
-    <div class="spec">
-      <div class="spec-l">P&amp;L</div>
-      <div class="spec-v pos">+6.81%</div>
-    </div>
-    <div class="spec">
-      <div class="spec-l">R / R:R</div>
-      <div class="spec-v pos">+0.48R &nbsp;2.55:1</div>
+<div class="chart-sec">
+  <div class="chart-head">
+    <span class="chart-cap">TRNLTTFD1, EUR/MWh, Apr&ndash;Oct 2026 (LSEG Datastream)</span>
+    <div class="chart-legend">
+      <span class="lg"><span class="lg-line" style="border-color:#B45309"></span>Entry 93.25</span>
+      <span class="lg"><span class="lg-line" style="border-color:#475569"></span>Target 127.00</span>
+      <span class="lg"><span class="lg-line" style="border-color:#B91C1C"></span>Stop 80.00</span>
     </div>
   </div>
+  <canvas id="c"></canvas>
+</div>
 
-  <div class="chart-box">
-    <div class="chart-top">
-      <span class="chart-lbl">TRNLTTFD1 &nbsp; EUR/MWh &nbsp; APR&ndash;OCT 2026 &nbsp; (LSEG Datastream)</span>
-      <div class="chart-legend">
-        <span class="leg"><span class="leg-line" style="border-color:#D97706"></span>Entry 93.25</span>
-        <span class="leg"><span class="leg-line" style="border-color:#22C55E"></span>Target 127.00</span>
-        <span class="leg"><span class="leg-line" style="border-color:#EF4444"></span>Stop 80.00</span>
-      </div>
-    </div>
-    <canvas id="c"></canvas>
-  </div>
+<div class="thesis-sec">
+  <p>TTF front-month prices trebled between late June (40.31 EUR/MWh) and late October (99.60 EUR/MWh), compressing what is typically a gradual seasonal recovery into a single quarter. The pace of the move reflects a structural shift in European gas balances: Norwegian pipeline maintenance in September and October reduced mainland exports by roughly 8% relative to 2025 levels, while Asian LNG buyers (primarily Japanese and Korean utilities rebuilding depleted inventories) have absorbed uncommitted Atlantic spot cargoes at premiums that keep the European import arb tight. These supply constraints have landed against a demand backdrop where early cold weather across central Europe brought forward heating load by approximately two weeks relative to the 10-year average.</p>
+  <p>The core thesis rests on the storage trajectory. European gas storage entered October at approximately 92% capacity, versus a five-year seasonal average of 95% for the same date. On the surface, 92% reads as comfortable. The more relevant observation is the rate of change: weekly net injections turned negative on 6 October, three weeks earlier than the 2021-25 median injection season end-date. Storage is now drawing at roughly 1.8 billion cubic metres per week. If that pace holds through November (consistent with the current temperature outlook), the EU storage buffer will underperform the seasonal norm by mid-December, arriving into the peak January-February demand window below the levels that prevented price spikes in 2021 and 2023.</p>
+  <p>The position was entered at 93.25 on 23 October on the first two-day close above the September high of 83.33. The 90.00 handle has since acted as intraday support on three retests, suggesting physical consumers covering winter requirements rather than speculative momentum. The stop at 80.00 is placed below the October-September consolidation low (75.20 on 6 October) and below the former range resistance that must hold as support to keep the winter premium structure intact. A close below 80.00 would imply either a significant demand destruction event or a supply development not priced in at entry, either of which invalidates the fundamental case.</p>
+  <p>The target of 127.00 reflects a 2.55:1 reward-to-risk ratio and corresponds to the price level at which European industrial gas demand has historically begun material curtailment, based on 2022 and 2023 precedent. The primary risk to the position is a warmer-than-normal November, which would slow early storage draws and give the market time to reassess the scarcity premium. A secondary risk is a coordinated increase in US LNG export utilisation above 90% of nameplate capacity, which would structurally loosen the Atlantic basin. The Ukrainian transit contract renewal due January 2027 adds bilateral political optionality that cuts both ways. Position is sized at EUR 100,000 notional to remain within drawdown tolerance at the 80.00 stop.</p>
+</div>
 
-  <div class="kicker">Trade Thesis</div>
-  <div class="thesis">
-    <p>TTF front-month prices trebled between late June (40.31 EUR/MWh) and late October (99.60 EUR/MWh), compressing what is typically a gradual seasonal recovery into a single quarter. The pace of the move reflects a structural shift in European gas balances: Norwegian pipeline maintenance in September and October reduced mainland exports by roughly 8% relative to 2025 levels, while Asian LNG buyers (primarily Japanese and Korean utilities rebuilding depleted inventories) have absorbed uncommitted Atlantic spot cargoes at premiums that keep the European import arb tight. These supply constraints have landed against a demand backdrop where early cold weather across central Europe brought forward heating load by approximately two weeks relative to the 10-year average.</p>
-    <p>The core thesis rests on the storage trajectory. European gas storage entered October at approximately 92% capacity, versus a five-year seasonal average of 95% for the same date. On the surface, 92% reads as comfortable. The more relevant observation is the rate of change: weekly net injections turned negative on 6 October, three weeks earlier than the 2021-25 median injection season end-date. Storage is now drawing at roughly 1.8 billion cubic metres per week. If that pace holds through November (consistent with the current temperature outlook), the EU storage buffer will underperform the seasonal norm by mid-December, arriving into the peak January-February demand window below the levels that prevented price spikes in 2021 and 2023.</p>
-    <p>The position was entered at 93.25 on 23 October on the first two-day close above the September high of 83.33. The 90.00 handle has since acted as intraday support on three retests, suggesting physical consumers covering winter requirements rather than speculative momentum. The stop at 80.00 is placed below the October-September consolidation low (75.20 on 6 October) and below the former range resistance that must hold as support to keep the winter premium structure intact. A close below 80.00 would imply either a significant demand destruction event or a supply development not priced in at entry, either of which invalidates the fundamental case.</p>
-    <p>The target of 127.00 reflects a 2.55:1 reward-to-risk ratio and corresponds to the price level at which European industrial gas demand has historically begun material curtailment, based on 2022 and 2023 precedent. The primary risk to the position is a warmer-than-normal November, which would slow early storage draws and give the market time to reassess the scarcity premium. A secondary risk is a coordinated increase in US LNG export utilisation above 90% of nameplate capacity, which would structurally loosen the Atlantic basin. The Ukrainian transit contract renewal due January 2027 adds bilateral political optionality that cuts both ways. Position is sized at EUR 100,000 notional to remain within drawdown tolerance at the 80.00 stop.</p>
-  </div>
-
-  <hr class="div">
-
-  <div class="kicker">About</div>
-  <div class="about-grid">
-    <div>
-      <div class="about-name">Kyle Glatley</div>
-      <div class="about-row">BSc Economics, University of Bath (2029)</div>
-      <div class="about-row">Summer Associate, Tradition, Abu Dhabi (2026)</div>
-      <div class="about-row">Commodities, European Power and Rates Desks</div>
-    </div>
-    <div>
-      <div class="kicker">Research Focus</div>
-      <div class="about-body">European energy commodities (TTF, Brent, EUA), macro rates and EUR/USD. Quantock Capital is a commodity research log tracking real positions to build analytical judgment ahead of a career in energy trading and structuring. Data sourced from LSEG Datastream, GIE AGSI, and FRED.</div>
+<div class="about-sec">
+  <div class="about-left">
+    <div class="about-name">Kyle Glatley</div>
+    <div class="about-detail">
+      BSc Economics, University of Bath (2029)<br>
+      Summer Associate, Tradition, Abu Dhabi (2026)<br>
+      Commodities, European Power and Rates Desks
     </div>
   </div>
-
-</main>
+  <div class="about-right">
+    European energy commodities (TTF, Brent, EUA), macro rates and EUR/USD. Quantock Capital is a commodity research log tracking real positions to build analytical judgment ahead of a career in energy trading and structuring. Data sourced from LSEG Datastream, GIE AGSI, and FRED.
+  </div>
+</div>
 
 <footer>
-  <span>QUANTOCK CAPITAL</span>
+  <span>Quantock Capital</span>
   <span>Paper positions for research purposes only. Not investment advice.</span>
 </footer>
 
+</div>
+
 <script>
 (function(){
-  const data=[
-  {d:"2026-04-29",p:46.85},
-  {d:"2026-04-30",p:45.9},
-  {d:"2026-05-01",p:45.61},
-  {d:"2026-05-04",p:47.18},
-  {d:"2026-05-05",p:47.21},
-  {d:"2026-05-06",p:44.24},
-  {d:"2026-05-07",p:44.0},
-  {d:"2026-05-08",p:44.11},
-  {d:"2026-05-11",p:46.15},
-  {d:"2026-05-12",p:47.5},
-  {d:"2026-05-13",p:47.48},
-  {d:"2026-05-14",p:47.91},
-  {d:"2026-05-15",p:49.85},
-  {d:"2026-05-18",p:50.1},
-  {d:"2026-05-19",p:52.8},
-  {d:"2026-05-20",p:49.4},
-  {d:"2026-05-21",p:49.4},
-  {d:"2026-05-22",p:48.36},
-  {d:"2026-05-25",p:48.4},
-  {d:"2026-05-26",p:46.96},
-  {d:"2026-05-27",p:45.9},
-  {d:"2026-05-28",p:46.7},
-  {d:"2026-05-29",p:47.1},
-  {d:"2026-06-01",p:48.65},
-  {d:"2026-06-02",p:47.15},
-  {d:"2026-06-03",p:48.55},
-  {d:"2026-06-04",p:48.47},
-  {d:"2026-06-05",p:48.4},
-  {d:"2026-06-08",p:49.74},
-  {d:"2026-06-09",p:48.69},
-  {d:"2026-06-10",p:50.0},
-  {d:"2026-06-11",p:49.35},
-  {d:"2026-06-12",p:46.61},
-  {d:"2026-06-15",p:42.45},
-  {d:"2026-06-16",p:42.15},
-  {d:"2026-06-17",p:41.4},
-  {d:"2026-06-18",p:40.4},
-  {d:"2026-06-19",p:41.8},
-  {d:"2026-06-22",p:42.55},
-  {d:"2026-06-23",p:41.78},
-  {d:"2026-06-24",p:40.69},
-  {d:"2026-06-25",p:40.31},
-  {d:"2026-06-26",p:40.43},
-  {d:"2026-06-29",p:42.6},
-  {d:"2026-06-30",p:43.65},
-  {d:"2026-07-01",p:43.18},
-  {d:"2026-07-02",p:43.91},
-  {d:"2026-07-03",p:44.76},
-  {d:"2026-07-06",p:44.11},
-  {d:"2026-07-07",p:46.39},
-  {d:"2026-07-08",p:49.01},
-  {d:"2026-07-09",p:50.08},
-  {d:"2026-07-10",p:48.08},
-  {d:"2026-07-13",p:51.25},
-  {d:"2026-07-14",p:52.9},
-  {d:"2026-07-15",p:54.25},
-  {d:"2026-07-16",p:54.7},
-  {d:"2026-07-17",p:55.21},
-  {d:"2026-07-20",p:59.27},
-  {d:"2026-07-21",p:59.93},
-  {d:"2026-07-22",p:62.8},
-  {d:"2026-07-23",p:62.55},
-  {d:"2026-07-24",p:63.38},
-  {d:"2026-07-27",p:58.25},
-  {d:"2026-07-28",p:57.0},
-  {d:"2026-07-29",p:60.5},
-  {d:"2026-07-30",p:58.6},
-  {d:"2026-07-31",p:59.4},
-  {d:"2026-08-03",p:57.83},
-  {d:"2026-08-04",p:55.51},
-  {d:"2026-08-05",p:52.4},
-  {d:"2026-08-06",p:56.2},
-  {d:"2026-08-07",p:55.7},
-  {d:"2026-08-10",p:58.25},
-  {d:"2026-08-11",p:59.03},
-  {d:"2026-08-12",p:61.0},
-  {d:"2026-08-13",p:60.25},
-  {d:"2026-08-14",p:61.0},
-  {d:"2026-08-17",p:62.0},
-  {d:"2026-08-18",p:63.9},
-  {d:"2026-08-19",p:63.5},
-  {d:"2026-08-20",p:65.5},
-  {d:"2026-08-21",p:65.75},
-  {d:"2026-08-24",p:68.25},
-  {d:"2026-08-25",p:66.8},
-  {d:"2026-08-26",p:65.75},
-  {d:"2026-08-27",p:67.78},
-  {d:"2026-08-28",p:66.65},
-  {d:"2026-09-01",p:72.13},
-  {d:"2026-09-02",p:73.3},
-  {d:"2026-09-03",p:71.4},
-  {d:"2026-09-04",p:70.85},
-  {d:"2026-09-07",p:73.3},
-  {d:"2026-09-08",p:75.78},
-  {d:"2026-09-09",p:79.9},
-  {d:"2026-09-10",p:82.9},
-  {d:"2026-09-11",p:80.61},
-  {d:"2026-09-14",p:83.33},
-  {d:"2026-09-15",p:81.18},
-  {d:"2026-09-16",p:78.1},
-  {d:"2026-09-17",p:76.93},
-  {d:"2026-09-18",p:79.0},
-  {d:"2026-09-21",p:73.92},
-  {d:"2026-09-22",p:74.25},
-  {d:"2026-09-23",p:72.61},
-  {d:"2026-09-24",p:75.85},
-  {d:"2026-09-25",p:72.2},
-  {d:"2026-09-28",p:71.35},
-  {d:"2026-09-29",p:72.1},
-  {d:"2026-09-30",p:72.02},
-  {d:"2026-10-01",p:74.01},
-  {d:"2026-10-02",p:75.8},
-  {d:"2026-10-05",p:74.19},
-  {d:"2026-10-06",p:75.2},
-  {d:"2026-10-07",p:78.35},
-  {d:"2026-10-08",p:79.0},
-  {d:"2026-10-09",p:82.3},
-  {d:"2026-10-12",p:84.55},
-  {d:"2026-10-13",p:87.9},
-  {d:"2026-10-14",p:87.0},
-  {d:"2026-10-15",p:87.2},
-  {d:"2026-10-16",p:88.5},
-  {d:"2026-10-19",p:89.0},
-  {d:"2026-10-20",p:87.15},
-  {d:"2026-10-21",p:87.88},
-  {d:"2026-10-22",p:90.3},
-  {d:"2026-10-23",p:93.25},
-  {d:"2026-10-26",p:97.8},
-  {d:"2026-10-27",p:97.6},
-  {d:"2026-10-28",p:102.4},
-  {d:"2026-10-29",p:99.6}
-  ];
+const data=[
+  {d:"2026-04-29",p:46.85},{d:"2026-04-30",p:45.9},{d:"2026-05-01",p:45.61},
+  {d:"2026-05-04",p:47.18},{d:"2026-05-05",p:47.21},{d:"2026-05-06",p:44.24},
+  {d:"2026-05-07",p:44.0},{d:"2026-05-08",p:44.11},{d:"2026-05-11",p:46.15},
+  {d:"2026-05-12",p:47.5},{d:"2026-05-13",p:47.48},{d:"2026-05-14",p:47.91},
+  {d:"2026-05-15",p:49.85},{d:"2026-05-18",p:50.1},{d:"2026-05-19",p:52.8},
+  {d:"2026-05-20",p:49.4},{d:"2026-05-21",p:49.4},{d:"2026-05-22",p:48.36},
+  {d:"2026-05-25",p:48.4},{d:"2026-05-26",p:46.96},{d:"2026-05-27",p:45.9},
+  {d:"2026-05-28",p:46.7},{d:"2026-05-29",p:47.1},{d:"2026-06-01",p:48.65},
+  {d:"2026-06-02",p:47.15},{d:"2026-06-03",p:48.55},{d:"2026-06-04",p:48.47},
+  {d:"2026-06-05",p:48.4},{d:"2026-06-08",p:49.74},{d:"2026-06-09",p:48.69},
+  {d:"2026-06-10",p:50.0},{d:"2026-06-11",p:49.35},{d:"2026-06-12",p:46.61},
+  {d:"2026-06-15",p:42.45},{d:"2026-06-16",p:42.15},{d:"2026-06-17",p:41.4},
+  {d:"2026-06-18",p:40.4},{d:"2026-06-19",p:41.8},{d:"2026-06-22",p:42.55},
+  {d:"2026-06-23",p:41.78},{d:"2026-06-24",p:40.69},{d:"2026-06-25",p:40.31},
+  {d:"2026-06-26",p:40.43},{d:"2026-06-29",p:42.6},{d:"2026-06-30",p:43.65},
+  {d:"2026-07-01",p:43.18},{d:"2026-07-02",p:43.91},{d:"2026-07-03",p:44.76},
+  {d:"2026-07-06",p:44.11},{d:"2026-07-07",p:46.39},{d:"2026-07-08",p:49.01},
+  {d:"2026-07-09",p:50.08},{d:"2026-07-10",p:48.08},{d:"2026-07-13",p:51.25},
+  {d:"2026-07-14",p:52.9},{d:"2026-07-15",p:54.25},{d:"2026-07-16",p:54.7},
+  {d:"2026-07-17",p:55.21},{d:"2026-07-20",p:59.27},{d:"2026-07-21",p:59.93},
+  {d:"2026-07-22",p:62.8},{d:"2026-07-23",p:62.55},{d:"2026-07-24",p:63.38},
+  {d:"2026-07-27",p:58.25},{d:"2026-07-28",p:57.0},{d:"2026-07-29",p:60.5},
+  {d:"2026-07-30",p:58.6},{d:"2026-07-31",p:59.4},{d:"2026-08-03",p:57.83},
+  {d:"2026-08-04",p:55.51},{d:"2026-08-05",p:52.4},{d:"2026-08-06",p:56.2},
+  {d:"2026-08-07",p:55.7},{d:"2026-08-10",p:58.25},{d:"2026-08-11",p:59.03},
+  {d:"2026-08-12",p:61.0},{d:"2026-08-13",p:60.25},{d:"2026-08-14",p:61.0},
+  {d:"2026-08-17",p:62.0},{d:"2026-08-18",p:63.9},{d:"2026-08-19",p:63.5},
+  {d:"2026-08-20",p:65.5},{d:"2026-08-21",p:65.75},{d:"2026-08-24",p:68.25},
+  {d:"2026-08-25",p:66.8},{d:"2026-08-26",p:65.75},{d:"2026-08-27",p:67.78},
+  {d:"2026-08-28",p:66.65},{d:"2026-09-01",p:72.13},{d:"2026-09-02",p:73.3},
+  {d:"2026-09-03",p:71.4},{d:"2026-09-04",p:70.85},{d:"2026-09-07",p:73.3},
+  {d:"2026-09-08",p:75.78},{d:"2026-09-09",p:79.9},{d:"2026-09-10",p:82.9},
+  {d:"2026-09-11",p:80.61},{d:"2026-09-14",p:83.33},{d:"2026-09-15",p:81.18},
+  {d:"2026-09-16",p:78.1},{d:"2026-09-17",p:76.93},{d:"2026-09-18",p:79.0},
+  {d:"2026-09-21",p:73.92},{d:"2026-09-22",p:74.25},{d:"2026-09-23",p:72.61},
+  {d:"2026-09-24",p:75.85},{d:"2026-09-25",p:72.2},{d:"2026-09-28",p:71.35},
+  {d:"2026-09-29",p:72.1},{d:"2026-09-30",p:72.02},{d:"2026-10-01",p:74.01},
+  {d:"2026-10-02",p:75.8},{d:"2026-10-05",p:74.19},{d:"2026-10-06",p:75.2},
+  {d:"2026-10-07",p:78.35},{d:"2026-10-08",p:79.0},{d:"2026-10-09",p:82.3},
+  {d:"2026-10-12",p:84.55},{d:"2026-10-13",p:87.9},{d:"2026-10-14",p:87.0},
+  {d:"2026-10-15",p:87.2},{d:"2026-10-16",p:88.5},{d:"2026-10-19",p:89.0},
+  {d:"2026-10-20",p:87.15},{d:"2026-10-21",p:87.88},{d:"2026-10-22",p:90.3},
+  {d:"2026-10-23",p:93.25},{d:"2026-10-26",p:97.8},{d:"2026-10-27",p:97.6},
+  {d:"2026-10-28",p:102.4},{d:"2026-10-29",p:99.6}
+];
 
-  const ENTRY=93.25, TARGET=127.00, STOP=80.00;
-  const cv=document.getElementById('c');
+const ENTRY=93.25, TARGET=127.00, STOP=80.00;
+const cv=document.getElementById('c');
 
-  function draw(){
-    const W=cv.offsetWidth, H=cv.offsetHeight;
-    if(!W||!H) return;
-    const dpr=window.devicePixelRatio||1;
-    cv.width=W*dpr; cv.height=H*dpr;
-    const ctx=cv.getContext('2d');
-    ctx.scale(dpr,dpr);
+function draw(){
+  const W=cv.offsetWidth, H=cv.offsetHeight;
+  if(!W||!H) return;
+  const dpr=window.devicePixelRatio||1;
+  cv.width=W*dpr; cv.height=H*dpr;
+  const ctx=cv.getContext('2d');
+  ctx.scale(dpr,dpr);
 
-    const prices=data.map(d=>d.p);
-    const pMin=36, pMax=134;
-    const PAD={t:12,r:56,b:28,l:44};
-    const cW=W-PAD.l-PAD.r, cH=H-PAD.t-PAD.b;
-    const xOf=i=>PAD.l+(i/(data.length-1))*cW;
-    const yOf=p=>PAD.t+cH-((p-pMin)/(pMax-pMin))*cH;
+  const pMin=36, pMax=134;
+  const PAD={t:12,r:52,b:28,l:40};
+  const cW=W-PAD.l-PAD.r, cH=H-PAD.t-PAD.b;
+  const xOf=i=>PAD.l+(i/(data.length-1))*cW;
+  const yOf=p=>PAD.t+cH-((p-pMin)/(pMax-pMin))*cH;
 
-    // grid lines
-    ctx.strokeStyle='#1D2535';ctx.lineWidth=1;
-    [40,50,60,70,80,90,100,110,120].forEach(p=>{
-      ctx.beginPath();ctx.moveTo(PAD.l,yOf(p));ctx.lineTo(PAD.l+cW,yOf(p));ctx.stroke();
-    });
+  // Chart background
+  ctx.fillStyle='#F8FAFC';
+  ctx.fillRect(PAD.l,PAD.t,cW,cH);
 
-    // y labels
-    ctx.fillStyle='#3A4155';ctx.font='9px JetBrains Mono,monospace';ctx.textAlign='right';
-    [40,60,80,100,120].forEach(p=>{
-      ctx.fillText(p,PAD.l-5,yOf(p)+3.5);
-    });
+  // Grid lines
+  ctx.strokeStyle='#E2E8F0'; ctx.lineWidth=1;
+  [40,50,60,70,80,90,100,110,120].forEach(p=>{
+    ctx.beginPath(); ctx.moveTo(PAD.l,yOf(p)); ctx.lineTo(PAD.l+cW,yOf(p)); ctx.stroke();
+  });
 
-    // x month labels
-    ctx.textAlign='center';ctx.fillStyle='#3A4155';
-    const mlabels=['Apr','May','Jun','Jul','Aug','Sep','Oct'];
-    mlabels.forEach((m,mi)=>{
-      const mo=mi+4;
-      const idx=data.findIndex(d=>new Date(d.d).getMonth()+1===mo);
-      if(idx>=0) ctx.fillText(m,xOf(idx),H-PAD.b+14);
-    });
+  // Y-axis labels
+  ctx.fillStyle='#94A3B8'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='right';
+  [40,60,80,100,120].forEach(p=>{
+    ctx.fillText(p,PAD.l-5,yOf(p)+3.5);
+  });
 
-    // dashed reference lines
-    function hline(p,col){
-      ctx.strokeStyle=col;ctx.lineWidth=1;ctx.setLineDash([3,4]);
-      ctx.globalAlpha=0.65;
-      ctx.beginPath();ctx.moveTo(PAD.l,yOf(p));ctx.lineTo(PAD.l+cW,yOf(p));ctx.stroke();
-      ctx.setLineDash([]);ctx.globalAlpha=1;
-    }
-    hline(ENTRY,'#D97706');
-    hline(TARGET,'#22C55E');
-    hline(STOP,'#EF4444');
+  // X month labels
+  ctx.textAlign='center'; ctx.fillStyle='#94A3B8';
+  ['Apr','May','Jun','Jul','Aug','Sep','Oct'].forEach((m,mi)=>{
+    const mo=mi+4;
+    const idx=data.findIndex(d=>new Date(d.d).getMonth()+1===mo);
+    if(idx>=0) ctx.fillText(m,xOf(idx),H-PAD.b+14);
+  });
 
-    // right-side price labels
-    ctx.font='9px JetBrains Mono,monospace';ctx.textAlign='left';
-    [[ENTRY,'#D97706','93.25'],[TARGET,'#22C55E','127.00'],[STOP,'#EF4444','80.00']].forEach(([p,c,t])=>{
-      ctx.fillStyle=c;ctx.globalAlpha=0.7;
-      ctx.fillText(t,PAD.l+cW+4,yOf(p)+3.5);
-    });
-    ctx.globalAlpha=1;
+  // Dashed reference lines
+  function hline(p,col){
+    ctx.strokeStyle=col; ctx.lineWidth=1; ctx.setLineDash([3,4]);
+    ctx.globalAlpha=0.65;
+    ctx.beginPath(); ctx.moveTo(PAD.l,yOf(p)); ctx.lineTo(PAD.l+cW,yOf(p)); ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha=1;
+  }
+  hline(ENTRY,'#B45309');
+  hline(TARGET,'#475569');
+  hline(STOP,'#B91C1C');
 
-    // price line
-    ctx.strokeStyle='#3B82F6';ctx.lineWidth=1.8;
-    ctx.beginPath();
-    data.forEach((d,i)=>{
-      i===0?ctx.moveTo(xOf(i),yOf(d.p)):ctx.lineTo(xOf(i),yOf(d.p));
-    });
-    ctx.stroke();
+  // Right-side price labels
+  ctx.font='9px DM Mono,monospace'; ctx.textAlign='left';
+  [[ENTRY,'#B45309','93.25'],[TARGET,'#475569','127.00'],[STOP,'#B91C1C','80.00']].forEach(([p,c,t])=>{
+    ctx.fillStyle=c; ctx.globalAlpha=0.75;
+    ctx.fillText(t,PAD.l+cW+4,yOf(p)+3.5);
+  });
+  ctx.globalAlpha=1;
 
-    // current price dot + label
-    const last=data[data.length-1];
-    const lx=xOf(data.length-1), ly=yOf(last.p);
-    ctx.fillStyle='#3B82F6';
-    ctx.beginPath();ctx.arc(lx,ly,3.5,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#3B82F6';ctx.font='10px JetBrains Mono,monospace';ctx.textAlign='right';
-    ctx.fillText('99.60',lx-7,ly-6);
+  // Price line
+  ctx.strokeStyle='#1D4ED8'; ctx.lineWidth=1.5;
+  ctx.beginPath();
+  data.forEach((d,i)=>{
+    i===0?ctx.moveTo(xOf(i),yOf(d.p)):ctx.lineTo(xOf(i),yOf(d.p));
+  });
+  ctx.stroke();
 
-    // entry dot
-    const entryIdx=data.findIndex(d=>d.d==='2026-10-23');
-    if(entryIdx>=0){
-      ctx.fillStyle='#D97706';
-      ctx.beginPath();ctx.arc(xOf(entryIdx),yOf(data[entryIdx].p),3.5,0,Math.PI*2);ctx.fill();
-    }
+  // Entry dot
+  const eIdx=data.findIndex(d=>d.d==='2026-10-23');
+  if(eIdx>=0){
+    ctx.fillStyle='#B45309';
+    ctx.beginPath(); ctx.arc(xOf(eIdx),yOf(data[eIdx].p),3,0,Math.PI*2); ctx.fill();
   }
 
-  draw();
-  const ro=new ResizeObserver(draw);
-  ro.observe(cv);
+  // Current price dot + label
+  const last=data[data.length-1];
+  const lx=xOf(data.length-1), ly=yOf(last.p);
+  ctx.fillStyle='#1D4ED8';
+  ctx.beginPath(); ctx.arc(lx,ly,3,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#1D4ED8'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='right';
+  ctx.fillText('99.60',lx-6,ly-6);
+}
+
+draw();
+new ResizeObserver(draw).observe(cv);
 })();
 </script>
+</body>
+</html>
