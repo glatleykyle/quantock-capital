@@ -145,7 +145,7 @@ header {
 .lg { display: flex; align-items: center; gap: 5px; }
 .lg-line { width: 16px; height: 0; border-top: 1.5px dashed; }
 
-canvas#c { width: 100%; height: 240px; display: block; }
+canvas#c, canvas#c2 { width: 100%; height: 240px; display: block; }
 
 /* Thesis */
 .thesis-sec {
@@ -269,6 +269,56 @@ footer {
   <p>The core thesis rests on the storage trajectory. European gas storage entered October at approximately 92% capacity, versus a five-year seasonal average of 95% for the same date. On the surface, 92% reads as comfortable. The more relevant observation is the rate of change: weekly net injections turned negative on 6 October, three weeks earlier than the 2021-25 median injection season end-date. Storage is now drawing at roughly 1.8 billion cubic metres per week. If that pace holds through November (consistent with the current temperature outlook), the EU storage buffer will underperform the seasonal norm by mid-December, arriving into the peak January-February demand window below the levels that prevented price spikes in 2021 and 2023.</p>
   <p>The position was entered at 93.25 on 23 October on the first two-day close above the September high of 83.33. The 90.00 handle has since acted as intraday support on three retests, suggesting physical consumers covering winter requirements rather than speculative momentum. The stop at 80.00 is placed below the October-September consolidation low (75.20 on 6 October) and below the former range resistance that must hold as support to keep the winter premium structure intact. A close below 80.00 would imply either a significant demand destruction event or a supply development not priced in at entry, either of which invalidates the fundamental case.</p>
   <p>The target of 127.00 reflects a 2.55:1 reward-to-risk ratio and corresponds to the price level at which European industrial gas demand has historically begun material curtailment, based on 2022 and 2023 precedent. The primary risk to the position is a warmer-than-normal November, which would slow early storage draws and give the market time to reassess the scarcity premium. A secondary risk is a coordinated increase in US LNG export utilisation above 90% of nameplate capacity, which would structurally loosen the Atlantic basin. The Ukrainian transit contract renewal due January 2027 adds bilateral political optionality that cuts both ways. Position is sized at EUR 100,000 notional to remain within drawdown tolerance at the 80.00 stop.</p>
+</div>
+
+<div class="trade-block">
+  <div class="trade-name">French Baseload Power, Cal 2027</div>
+  <div class="trade-id">002 &nbsp;&nbsp; Long &nbsp;&nbsp; Opened 29 Oct 2026 &nbsp;&nbsp; ICE/ENDEX &nbsp;&nbsp; TRFRBYc1</div>
+  <div class="metrics">
+    <div class="metric">
+      <div class="m-lbl">Entry</div>
+      <div class="m-val">122.00</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">Current</div>
+      <div class="m-val">122.00</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">Stop</div>
+      <div class="m-val">100.00</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">Target</div>
+      <div class="m-val">165.00</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">P&amp;L</div>
+      <div class="m-val">0.00%</div>
+    </div>
+    <div class="metric">
+      <div class="m-lbl">R/R</div>
+      <div class="m-val">1.95:1</div>
+    </div>
+  </div>
+</div>
+
+<div class="chart-sec">
+  <div class="chart-head">
+    <span class="chart-cap">TRFRBYc1, EUR/MWh, Aug 2025&ndash;Oct 2026 (LSEG Datastream)</span>
+    <div class="chart-legend">
+      <span class="lg"><span class="lg-line" style="border-color:#B45309"></span>Entry 122.00</span>
+      <span class="lg"><span class="lg-line" style="border-color:#475569"></span>Target 165.00</span>
+      <span class="lg"><span class="lg-line" style="border-color:#B91C1C"></span>Stop 100.00</span>
+    </div>
+  </div>
+  <canvas id="c2"></canvas>
+</div>
+
+<div class="thesis-sec">
+  <p>The Cal-27 French baseload forward has traced the same arc as TTF through 2026, bottoming at 47.80 EUR/MWh on 2 December 2025 before rallying 155% to 122.00 by late October. The mechanism is structural: gas-fired combined-cycle plants sit at the margin of the European merit order for a meaningful portion of delivery hours, and as TTF rose from approximately 40 EUR/MWh in June to above 99 EUR/MWh in October, the implied variable cost of the marginal generating unit dragged forward power prices correspondingly higher. At current TTF levels, a 55% efficient CCGT incurs a fuel cost of roughly 180 EUR/MWh before carbon allowances (EUA currently near 72 EUR/MWh), meaning the only mechanism to hold Cal-27 power prices below 122 EUR/MWh is if French nuclear and renewables are consistently sufficient to push gas off the margin. That is the thesis: whether 2027 French nuclear output will be adequate to do that at scale, and the evidence suggests it will not be fully adequate during the peak winter hours that set annual baseload averages.</p>
+  <p>EDF completed a significant share of its stress corrosion cracking repair programme in 2024 and 2025, and the fleet's availability improved materially from the lows of 2022 (approximately 320 TWh generated). EDF has guided to 360-400 TWh for 2027, against roughly 380 TWh in 2026. Even at the top of that range, French nuclear covers approximately 70% of annual domestic consumption, leaving the residual to renewables, gas, and net imports. The critical constraint is hourly, not annual: during peak winter demand on cold, low-wind days, French consumption can reach 85-90 GW, against a typical nuclear contribution of around 55-60 GW in December-January. The residual 25-30 GW must be supplied by renewables, interconnectors, and CCGT. If German interconnectors are constrained by their own gas-market dynamics (a plausible scenario given Trade 001's thesis on EU storage), domestic French CCGT becomes the clearing price, and that clearing price is set by TTF.</p>
+  <p>The position was entered at 122.00 on 29 October, the first close above the 120.00 round level that had capped the rally through mid-October. The 19 October dislocation to 93.75 (a 13% single-session drop, immediately recovered to 111.40 the following day) is notable: dislocations of that magnitude followed by instant recovery in a forward curve typically reflect physical demand from utilities and industrials buying weakness, not speculative activity. The stop at 100.00 is placed below the September-to-early-October consolidation range (88.00-100.85) and below the level at which TTF-to-power economics would imply any meaningful gas margin if TTF were to fall back toward 60 EUR/MWh. A close below 100.00 would require either a significant TTF reversal (which would simultaneously invalidate Trade 001) or an upward revision to EDF's 2027 nuclear guidance materially beyond its current range, either of which would undermine the fundamental premise.</p>
+  <p>The target of 165.00 EUR/MWh reflects a price level consistent with sustained TTF above 90 EUR/MWh and nuclear output at the lower end of EDF guidance, producing an R/R of approximately 1.95:1. Levels above 165 EUR/MWh historically coincide with the kind of demand curtailment by energy-intensive French industry (aluminium smelting, steel, chemicals) that constrains the upside. The primary risk to the position is a faster-than-anticipated nuclear recovery: if EDF revises 2027 generation guidance materially higher in its Q4 2026 earnings, the gas risk premium embedded in Cal-27 would compress. A warmer-than-normal European winter would ease TTF draws and flow directly into power. This position is explicitly linked to Trade 001: the TTF storage thesis, if correct, provides the commodity input cost foundation for this power long, and a development that invalidates one position will likely invalidate the other.</p>
 </div>
 
 <div class="about-sec">
@@ -427,6 +477,193 @@ function draw(){
 
 draw();
 new ResizeObserver(draw).observe(cv);
+})();
+
+(function(){
+const data2=[
+  {d:"2025-08-29",p:59.7},{d:"2025-09-01",p:60.15},{d:"2025-09-02",p:60.4},
+  {d:"2025-09-03",p:60.0},{d:"2025-09-04",p:60.45},{d:"2025-09-05",p:59.85},
+  {d:"2025-09-08",p:60.45},{d:"2025-09-09",p:60.15},{d:"2025-09-10",p:60.05},
+  {d:"2025-09-11",p:58.9},{d:"2025-09-12",p:58.7},{d:"2025-09-15",p:58.45},
+  {d:"2025-09-16",p:58.4},{d:"2025-09-17",p:59.5},{d:"2025-09-18",p:59.75},
+  {d:"2025-09-19",p:59.04},{d:"2025-09-22",p:57.78},{d:"2025-09-23",p:57.7},
+  {d:"2025-09-24",p:57.1},{d:"2025-09-25",p:57.55},{d:"2025-09-26",p:57.3},
+  {d:"2025-09-29",p:56.65},{d:"2025-09-30",p:55.7},{d:"2025-10-01",p:56.2},
+  {d:"2025-10-02",p:56.8},{d:"2025-10-03",p:58.25},{d:"2025-10-06",p:59.35},
+  {d:"2025-10-07",p:59.7},{d:"2025-10-08",p:59.25},{d:"2025-10-09",p:58.85},
+  {d:"2025-10-10",p:58.55},{d:"2025-10-13",p:57.95},{d:"2025-10-14",p:56.5},
+  {d:"2025-10-15",p:56.65},{d:"2025-10-16",p:56.9},{d:"2025-10-17",p:57.1},
+  {d:"2025-10-20",p:56.5},{d:"2025-10-21",p:56.5},{d:"2025-10-22",p:56.6},
+  {d:"2025-10-23",p:56.3},{d:"2025-10-24",p:55.41},{d:"2025-10-27",p:54.65},
+  {d:"2025-10-28",p:55.2},{d:"2025-10-29",p:55.5},{d:"2025-10-30",p:55.05},
+  {d:"2025-10-31",p:54.5},{d:"2025-11-03",p:55.2},{d:"2025-11-04",p:56.05},
+  {d:"2025-11-05",p:55.3},{d:"2025-11-06",p:54.35},{d:"2025-11-07",p:53.49},
+  {d:"2025-11-10",p:52.7},{d:"2025-11-11",p:52.65},{d:"2025-11-12",p:53.0},
+  {d:"2025-11-13",p:52.31},{d:"2025-11-14",p:53.25},{d:"2025-11-17",p:52.4},
+  {d:"2025-11-18",p:52.35},{d:"2025-11-19",p:51.9},{d:"2025-11-20",p:52.0},
+  {d:"2025-11-21",p:51.45},{d:"2025-11-24",p:50.4},{d:"2025-11-25",p:50.15},
+  {d:"2025-11-26",p:49.5},{d:"2025-11-27",p:49.8},{d:"2025-11-28",p:49.35},
+  {d:"2025-12-01",p:48.6},{d:"2025-12-02",p:47.8},{d:"2025-12-03",p:48.55},
+  {d:"2025-12-04",p:48.45},{d:"2025-12-05",p:48.4},{d:"2025-12-08",p:47.85},
+  {d:"2025-12-09",p:48.6},{d:"2025-12-10",p:48.35},{d:"2025-12-11",p:48.85},
+  {d:"2025-12-12",p:49.4},{d:"2025-12-15",p:49.95},{d:"2025-12-16",p:49.8},
+  {d:"2025-12-17",p:50.25},{d:"2025-12-18",p:50.25},{d:"2025-12-19",p:50.95},
+  {d:"2025-12-22",p:50.75},{d:"2025-12-23",p:51.0},{d:"2025-12-24",p:51.3},
+  {d:"2025-12-25",p:51.3},{d:"2025-12-29",p:50.6},{d:"2025-12-30",p:49.8},
+  {d:"2026-01-02",p:49.8},{d:"2026-01-05",p:48.8},{d:"2026-01-06",p:48.7},
+  {d:"2026-01-07",p:48.75},{d:"2026-01-08",p:48.5},{d:"2026-01-09",p:49.45},
+  {d:"2026-01-12",p:50.25},{d:"2026-01-13",p:51.0},{d:"2026-01-14",p:51.25},
+  {d:"2026-01-15",p:50.65},{d:"2026-01-16",p:51.67},{d:"2026-01-19",p:50.6},
+  {d:"2026-01-20",p:50.15},{d:"2026-01-21",p:51.4},{d:"2026-01-22",p:51.65},
+  {d:"2026-01-23",p:50.95},{d:"2026-01-26",p:49.92},{d:"2026-01-27",p:49.25},
+  {d:"2026-01-28",p:49.55},{d:"2026-01-29",p:50.6},{d:"2026-01-30",p:50.2},
+  {d:"2026-02-02",p:49.81},{d:"2026-02-03",p:49.8},{d:"2026-02-04",p:49.33},
+  {d:"2026-02-05",p:49.35},{d:"2026-02-06",p:48.35},{d:"2026-02-09",p:49.0},
+  {d:"2026-02-10",p:49.2},{d:"2026-02-11",p:48.3},{d:"2026-02-12",p:50.0},
+  {d:"2026-02-13",p:50.6},{d:"2026-02-16",p:49.9},{d:"2026-02-17",p:49.8},
+  {d:"2026-02-18",p:51.05},{d:"2026-02-19",p:52.8},{d:"2026-02-20",p:53.35},
+  {d:"2026-02-23",p:53.05},{d:"2026-02-24",p:52.25},{d:"2026-02-25",p:51.6},
+  {d:"2026-02-26",p:50.7},{d:"2026-02-27",p:50.4},{d:"2026-03-02",p:52.2},
+  {d:"2026-03-03",p:58.14},{d:"2026-03-04",p:56.0},{d:"2026-03-05",p:55.8},
+  {d:"2026-03-06",p:57.9},{d:"2026-03-09",p:62.4},{d:"2026-03-10",p:57.0},
+  {d:"2026-03-11",p:57.25},{d:"2026-03-12",p:56.5},{d:"2026-03-13",p:56.0},
+  {d:"2026-03-16",p:56.0},{d:"2026-03-17",p:55.35},{d:"2026-03-18",p:55.2},
+  {d:"2026-03-19",p:56.9},{d:"2026-03-20",p:56.75},{d:"2026-03-23",p:57.07},
+  {d:"2026-03-24",p:57.8},{d:"2026-03-25",p:57.8},{d:"2026-03-26",p:59.7},
+  {d:"2026-03-27",p:60.1},{d:"2026-03-30",p:58.3},{d:"2026-03-31",p:56.8},
+  {d:"2026-04-01",p:55.58},{d:"2026-04-02",p:56.97},{d:"2026-04-07",p:57.7},
+  {d:"2026-04-08",p:55.0},{d:"2026-04-09",p:55.1},{d:"2026-04-10",p:55.0},
+  {d:"2026-04-13",p:56.0},{d:"2026-04-14",p:54.7},{d:"2026-04-15",p:53.5},
+  {d:"2026-04-16",p:53.75},{d:"2026-04-17",p:52.05},{d:"2026-04-20",p:51.5},
+  {d:"2026-04-21",p:52.2},{d:"2026-04-22",p:53.25},{d:"2026-04-23",p:54.3},
+  {d:"2026-04-24",p:54.5},{d:"2026-04-27",p:54.1},{d:"2026-04-28",p:53.2},
+  {d:"2026-04-29",p:53.74},{d:"2026-04-30",p:53.25},{d:"2026-05-04",p:55.35},
+  {d:"2026-05-05",p:54.4},{d:"2026-05-06",p:53.5},{d:"2026-05-07",p:52.75},
+  {d:"2026-05-08",p:52.25},{d:"2026-05-11",p:52.9},{d:"2026-05-12",p:53.8},
+  {d:"2026-05-13",p:54.25},{d:"2026-05-14",p:54.45},{d:"2026-05-15",p:55.3},
+  {d:"2026-05-18",p:55.25},{d:"2026-05-19",p:55.5},{d:"2026-05-20",p:55.6},
+  {d:"2026-05-22",p:55.3},{d:"2026-05-25",p:54.5},{d:"2026-05-26",p:56.0},
+  {d:"2026-05-27",p:55.85},{d:"2026-05-28",p:56.0},{d:"2026-05-29",p:56.6},
+  {d:"2026-06-01",p:57.25},{d:"2026-06-02",p:56.85},{d:"2026-06-03",p:57.65},
+  {d:"2026-06-04",p:56.35},{d:"2026-06-05",p:56.35},{d:"2026-06-08",p:57.35},
+  {d:"2026-06-09",p:57.15},{d:"2026-06-10",p:57.75},{d:"2026-06-11",p:58.6},
+  {d:"2026-06-12",p:57.45},{d:"2026-06-15",p:56.8},{d:"2026-06-16",p:56.5},
+  {d:"2026-06-17",p:56.75},{d:"2026-06-18",p:56.5},{d:"2026-06-19",p:57.2},
+  {d:"2026-06-22",p:57.5},{d:"2026-06-23",p:56.8},{d:"2026-06-24",p:56.2},
+  {d:"2026-06-25",p:56.0},{d:"2026-06-26",p:55.6},{d:"2026-06-29",p:56.3},
+  {d:"2026-06-30",p:57.4},{d:"2026-07-01",p:57.25},{d:"2026-07-02",p:57.35},
+  {d:"2026-07-03",p:57.35},{d:"2026-07-06",p:58.0},{d:"2026-07-07",p:59.15},
+  {d:"2026-07-08",p:60.0},{d:"2026-07-09",p:60.4},{d:"2026-07-10",p:59.9},
+  {d:"2026-07-13",p:61.35},{d:"2026-07-14",p:62.7},{d:"2026-07-15",p:64.0},
+  {d:"2026-07-16",p:64.1},{d:"2026-07-17",p:64.9},{d:"2026-07-20",p:64.95},
+  {d:"2026-07-21",p:66.25},{d:"2026-07-22",p:69.75},{d:"2026-07-23",p:69.5},
+  {d:"2026-07-24",p:70.0},{d:"2026-07-27",p:66.75},{d:"2026-07-28",p:65.25},
+  {d:"2026-07-29",p:65.5},{d:"2026-07-30",p:66.35},{d:"2026-07-31",p:65.15},
+  {d:"2026-08-03",p:63.25},{d:"2026-08-04",p:62.6},{d:"2026-08-05",p:61.35},
+  {d:"2026-08-06",p:61.85},{d:"2026-08-07",p:63.2},{d:"2026-08-10",p:64.75},
+  {d:"2026-08-11",p:65.1},{d:"2026-08-12",p:65.5},{d:"2026-08-13",p:65.15},
+  {d:"2026-08-14",p:65.1},{d:"2026-08-17",p:64.1},{d:"2026-08-18",p:64.25},
+  {d:"2026-08-19",p:64.75},{d:"2026-08-20",p:67.0},{d:"2026-08-21",p:67.5},
+  {d:"2026-08-24",p:66.75},{d:"2026-08-25",p:69.0},{d:"2026-08-26",p:68.75},
+  {d:"2026-08-27",p:68.7},{d:"2026-08-28",p:69.0},{d:"2026-08-31",p:70.6},
+  {d:"2026-09-01",p:73.7},{d:"2026-09-02",p:78.5},{d:"2026-09-03",p:79.0},
+  {d:"2026-09-04",p:79.0},{d:"2026-09-07",p:81.9},{d:"2026-09-08",p:84.4},
+  {d:"2026-09-09",p:86.5},{d:"2026-09-10",p:90.65},{d:"2026-09-11",p:89.9},
+  {d:"2026-09-14",p:94.0},{d:"2026-09-15",p:87.0},{d:"2026-09-16",p:87.1},
+  {d:"2026-09-17",p:84.6},{d:"2026-09-18",p:85.75},{d:"2026-09-21",p:86.4},
+  {d:"2026-09-22",p:84.8},{d:"2026-09-23",p:84.0},{d:"2026-09-24",p:87.35},
+  {d:"2026-09-25",p:87.0},{d:"2026-09-29",p:88.5},{d:"2026-09-30",p:88.0},
+  {d:"2026-10-01",p:93.0},{d:"2026-10-02",p:93.05},{d:"2026-10-05",p:93.4},
+  {d:"2026-10-07",p:98.3},{d:"2026-10-08",p:100.75},{d:"2026-10-09",p:100.85},
+  {d:"2026-10-12",p:103.7},{d:"2026-10-13",p:105.75},{d:"2026-10-14",p:106.2},
+  {d:"2026-10-15",p:107.0},{d:"2026-10-16",p:108.5},{d:"2026-10-19",p:93.75},
+  {d:"2026-10-20",p:111.4},{d:"2026-10-21",p:110.05},{d:"2026-10-22",p:111.75},
+  {d:"2026-10-23",p:116.75},{d:"2026-10-26",p:120.25},{d:"2026-10-27",p:119.4},
+  {d:"2026-10-28",p:122.5},{d:"2026-10-29",p:122.0}
+];
+
+const ENTRY2=122.00, TARGET2=165.00, STOP2=100.00;
+const cv2=document.getElementById('c2');
+
+function draw2(){
+  const W=cv2.offsetWidth, H=cv2.offsetHeight;
+  if(!W||!H) return;
+  const dpr=window.devicePixelRatio||1;
+  cv2.width=W*dpr; cv2.height=H*dpr;
+  const ctx=cv2.getContext('2d');
+  ctx.scale(dpr,dpr);
+
+  const pMin=38, pMax=178;
+  const PAD={t:12,r:56,b:28,l:40};
+  const cW=W-PAD.l-PAD.r, cH=H-PAD.t-PAD.b;
+  const xOf=i=>PAD.l+(i/(data2.length-1))*cW;
+  const yOf=p=>PAD.t+cH-((p-pMin)/(pMax-pMin))*cH;
+
+  ctx.fillStyle='#F8FAFC';
+  ctx.fillRect(PAD.l,PAD.t,cW,cH);
+
+  ctx.strokeStyle='#E2E8F0'; ctx.lineWidth=1;
+  [60,80,100,120,140,160].forEach(p=>{
+    ctx.beginPath(); ctx.moveTo(PAD.l,yOf(p)); ctx.lineTo(PAD.l+cW,yOf(p)); ctx.stroke();
+  });
+
+  ctx.fillStyle='#94A3B8'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='right';
+  [60,80,100,120,140,160].forEach(p=>{
+    ctx.fillText(p,PAD.l-5,yOf(p)+3.5);
+  });
+
+  // X-axis month labels spanning Aug 2025 to Oct 2026
+  ctx.textAlign='center'; ctx.fillStyle='#94A3B8';
+  [{yr:2025,mo:8,lbl:"Aug'25"},{yr:2025,mo:11,lbl:"Nov'25"},
+   {yr:2026,mo:2,lbl:"Feb'26"},{yr:2026,mo:5,lbl:"May'26"},
+   {yr:2026,mo:8,lbl:"Aug'26"},{yr:2026,mo:10,lbl:"Oct'26"}
+  ].forEach(({yr,mo,lbl})=>{
+    const idx=data2.findIndex(d=>{const dt=new Date(d.d);return dt.getFullYear()===yr&&dt.getMonth()+1===mo;});
+    if(idx>=0) ctx.fillText(lbl,xOf(idx),H-PAD.b+14);
+  });
+
+  function hline(p,col){
+    ctx.strokeStyle=col; ctx.lineWidth=1; ctx.setLineDash([3,4]);
+    ctx.globalAlpha=0.65;
+    ctx.beginPath(); ctx.moveTo(PAD.l,yOf(p)); ctx.lineTo(PAD.l+cW,yOf(p)); ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha=1;
+  }
+  hline(ENTRY2,'#B45309');
+  hline(TARGET2,'#475569');
+  hline(STOP2,'#B91C1C');
+
+  ctx.font='9px DM Mono,monospace'; ctx.textAlign='left';
+  [[ENTRY2,'#B45309','122.00'],[TARGET2,'#475569','165.00'],[STOP2,'#B91C1C','100.00']].forEach(([p,c,t])=>{
+    ctx.fillStyle=c; ctx.globalAlpha=0.75;
+    ctx.fillText(t,PAD.l+cW+4,yOf(p)+3.5);
+  });
+  ctx.globalAlpha=1;
+
+  ctx.strokeStyle='#1D4ED8'; ctx.lineWidth=1.5;
+  ctx.beginPath();
+  data2.forEach((d,i)=>{
+    i===0?ctx.moveTo(xOf(i),yOf(d.p)):ctx.lineTo(xOf(i),yOf(d.p));
+  });
+  ctx.stroke();
+
+  // Entry dot
+  const eIdx=data2.findIndex(d=>d.d==='2026-10-29');
+  if(eIdx>=0){
+    ctx.fillStyle='#B45309';
+    ctx.beginPath(); ctx.arc(xOf(eIdx),yOf(data2[eIdx].p),3,0,Math.PI*2); ctx.fill();
+  }
+
+  // Current dot + label
+  const last=data2[data2.length-1];
+  const lx=xOf(data2.length-1), ly=yOf(last.p);
+  ctx.fillStyle='#1D4ED8';
+  ctx.beginPath(); ctx.arc(lx,ly,3,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#1D4ED8'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='right';
+  ctx.fillText('122.00',lx-6,ly-6);
+}
+
+draw2();
+new ResizeObserver(draw2).observe(cv2);
 })();
 </script>
 </body>
